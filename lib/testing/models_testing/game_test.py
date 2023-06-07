@@ -4,12 +4,13 @@ from sqlalchemy.orm import sessionmaker
 from conftest import SQLITE_URL
 from models import User, Game, Review
 
+
 class TestGame:
-    '''Game in models.py'''
+    """Game in models.py"""
 
     def test_has_attributes(self):
-        '''has attributes id, title, genre, platform, price, reviews, and users.'''
-        
+        """has attributes id, title, genre, platform, price, reviews, and users."""
+
         engine = create_engine(SQLITE_URL)
         Session = sessionmaker(bind=engine)
         session = Session()
@@ -30,7 +31,7 @@ class TestGame:
         session.commit()
 
     def test_has_many_reviews(self):
-        '''has an attribute "reviews" that is a sequence of Review records.'''
+        """has an attribute "reviews" that is a sequence of Review records."""
 
         engine = create_engine(SQLITE_URL)
         Session = sessionmaker(bind=engine)
@@ -56,7 +57,7 @@ class TestGame:
         session.commit()
 
     def test_has_many_users(self):
-        '''has an attribute "users" that is a sequence of User records.'''
+        """has an attribute "users" that is a sequence of User records."""
 
         engine = create_engine(SQLITE_URL)
         Session = sessionmaker(bind=engine)
@@ -66,7 +67,7 @@ class TestGame:
         user_2 = User(name="Prabhdip")
         session.add_all([user_1, user_2])
         session.commit()
-        
+
         game = Game(title="Super Marvin 128")
         game.users.append(user_1)
         game.users.append(user_2)
